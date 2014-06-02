@@ -23,6 +23,15 @@
     <p>This text was rendered by our app</p>
 </script>
 
+
+<script id='different-static-template' type="text/template">
+    <p>This DIFFERENT text was rendered by our app</p>
+</script>
+
+<script type="text/template" id="list-item-template">
+    <li>One item</li>
+</script>
+
 <script src="assets/jquery/dist/jquery.js"></script>
 <script src="assets/json2/json2.js"></script>
 <script src="assets/lodash/dist/lodash.js"></script>
@@ -36,11 +45,14 @@
     });
 
     ContactManager.StaticView = Backbone.Marionette.ItemView.extend({
-        template: '#static-template'
+        template: '#static-template',
     });
 
     ContactManager.on('initialize:after', function(){
-        var staticView =  new ContactManager.StaticView;
+        var staticView =  new ContactManager.StaticView({
+            template: '#list-item-template',
+            tagName: 'ul'
+        });
         ContactManager.mainRegion.show(staticView);
     })
 

@@ -14,13 +14,37 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <p>Static content</p>
+
+<div id="main-region" class="container">
+    Main region - content will be replaced on app start
 </div>
+
+<script id='static-template' type="text/template">
+    <p>This text was rendered by our app</p>
+</script>
+
 <script src="assets/jquery/dist/jquery.js"></script>
 <script src="assets/json2/json2.js"></script>
 <script src="assets/lodash/dist/lodash.js"></script>
 <script src="assets/backbone/backbone.js"></script>
 <script src="assets/backbone.marionette/lib/backbone.marionette.js"></script>
+<script>
+    var ContactManager = new Marionette.Application;
+
+    ContactManager.addRegions({
+        mainRegion: "#main-region"
+    });
+
+    ContactManager.StaticView = Backbone.Marionette.ItemView.extend({
+        template: '#static-template'
+    });
+
+    ContactManager.on('initialize:after', function(){
+        var staticView =  new ContactManager.StaticView;
+        ContactManager.mainRegion.show(staticView);
+    })
+
+    ContactManager.start();
+</script>
 </body>
 </html>

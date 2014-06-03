@@ -19,13 +19,9 @@
     Main region - content will be replaced on app start
 </div>
 
-<script id='static-template' type="text/template">
-    <p>This text was rendered by our app</p>
-</script>
 
-
-<script id='different-static-template' type="text/template">
-    <p>This DIFFERENT text was rendered by our app</p>
+<script id="contact-list-item" type="text/template">
+    <%= firstName %> <%= lastName %>
 </script>
 
 <script type="text/template" id="list-item-template">
@@ -39,22 +35,53 @@
 <script src="assets/backbone.marionette/lib/backbone.marionette.js"></script>
 <script>
     var ContactManager = new Marionette.Application;
+    ContactManager.Contact = Backbone.Model.extend({
+        defaults: {
+            firstName: '',
+            lastName: '',
+            phone: 'No phone number!'
+        }
+    });
+
+    ContactManager.ContactCollection = Backbone.Collection.extend({
+        model: ContactManager.Contact,
+        comparator: function (a) {
+            return a.get('firstName') + ' ' + a.get('lastName');
+        }
+    });
 
     ContactManager.addRegions({
         mainRegion: "#main-region"
     });
 
-    ContactManager.StaticView = Backbone.Marionette.ItemView.extend({
-        template: '#static-template',
+    ContactManager.ContactItemView = Backbone.Marionette.ItemView.extend({
+        template: "#contact-list-item",
+        tagName: 'li',
+        events: {
+            'click': 'alertPhoneNumber'
+        },
+        alertPhoneNumber: function () {
+            alert(this.model.escape('phone'))
+        }
     });
 
-    ContactManager.on('initialize:after', function(){
-        var staticView =  new ContactManager.StaticView({
-            template: '#list-item-template',
-            tagName: 'ul'
-        });
-        ContactManager.mainRegion.show(staticView);
-    })
+    ContactManager.ContactsView = Backbone.Marionette.CollectionView.extend({
+        tagName: 'ul',
+        itemView: ContactManager.ContactItemView
+    });
+
+    ContactManager.on('initialize:after', function () {
+        var contacts = new ContactManager.ContactCollection([
+            {firstName: 'aa', lastName: 'rr', phone: '+111'},
+            {firstName: 'aa', lastName: 'dd', phone: '+222'},
+            {firstName: 'bb', lastName: 'ee'},
+            {firstName: 'bb', lastName: 'bb', phone: '+444444'}
+        ]);
+
+
+        var contactView = new ContactManager.ContactsView({collection: contacts});
+        ContactManager.mainRegion.show(contactView);
+    });
 
     ContactManager.start();
 </script>

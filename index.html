@@ -19,13 +19,8 @@
     Main region - content will be replaced on app start
 </div>
 
-
 <script id="contact-list-item" type="text/template">
     <%= firstName %> <%= lastName %>
-</script>
-
-<script type="text/template" id="list-item-template">
-    <li>One item</li>
 </script>
 
 <script src="assets/jquery/dist/jquery.js"></script>
@@ -33,56 +28,11 @@
 <script src="assets/lodash/dist/lodash.js"></script>
 <script src="assets/backbone/backbone.js"></script>
 <script src="assets/backbone.marionette/lib/backbone.marionette.js"></script>
+<script src="js/app.js"></script>
+<script src="js/entities/contact.js"></script>
+<script src="js/apps/contacts/list/list_view.js"></script>
+<script src="js/apps/contacts/list/list_controller.js"></script>
 <script>
-    var ContactManager = new Marionette.Application;
-    ContactManager.Contact = Backbone.Model.extend({
-        defaults: {
-            firstName: '',
-            lastName: '',
-            phone: 'No phone number!'
-        }
-    });
-
-    ContactManager.ContactCollection = Backbone.Collection.extend({
-        model: ContactManager.Contact,
-        comparator: function (a) {
-            return a.get('firstName') + ' ' + a.get('lastName');
-        }
-    });
-
-    ContactManager.addRegions({
-        mainRegion: "#main-region"
-    });
-
-    ContactManager.ContactItemView = Backbone.Marionette.ItemView.extend({
-        template: "#contact-list-item",
-        tagName: 'li',
-        events: {
-            'click': 'alertPhoneNumber'
-        },
-        alertPhoneNumber: function () {
-            alert(this.model.escape('phone'))
-        }
-    });
-
-    ContactManager.ContactsView = Backbone.Marionette.CollectionView.extend({
-        tagName: 'ul',
-        itemView: ContactManager.ContactItemView
-    });
-
-    ContactManager.on('initialize:after', function () {
-        var contacts = new ContactManager.ContactCollection([
-            {firstName: 'aa', lastName: 'rr', phone: '+111'},
-            {firstName: 'aa', lastName: 'dd', phone: '+222'},
-            {firstName: 'bb', lastName: 'ee'},
-            {firstName: 'bb', lastName: 'bb', phone: '+444444'}
-        ]);
-
-
-        var contactView = new ContactManager.ContactsView({collection: contacts});
-        ContactManager.mainRegion.show(contactView);
-    });
-
     ContactManager.start();
 </script>
 </body>

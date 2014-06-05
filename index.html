@@ -19,7 +19,27 @@
     Main region - content will be replaced on app start
 </div>
 
+<script id="contact-list" type="text/template">
+    <thead>
+    <tr>
+    <th>First name</th><th>Last name</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</script>
+
+
 <script id="contact-list-item" type="text/template">
+    <td><%= firstName %></td><td><%= lastName %></td>
+</script>
+
+<script id="contact-flat-list" type="text/template">
+    <p>Here is the list of all the contacts we have information for:</p>
+    <ul></ul>
+</script>
+
+
+<script id="contact-flat-list-item" type="text/template">
     <%= firstName %> <%= lastName %>
 </script>
 

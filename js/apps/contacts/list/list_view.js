@@ -4,14 +4,20 @@ ContactManager.module('ContactApp.List', function(List, ContactManager, Backbone
         tagName: 'tr',
         events: {
             'click': 'highlightName',
-            'click td': 'alertTableCellContent'
+            'click .js-delete': 'onDeleteClick',
         },
         highlightName: function(){
             this.$el.toggleClass('warning');
+            this.trigger('contact:highlighting:toggled', this.model);
         },
-        alertTableCellContent: function(ev){
-            var $el = $(ev.target);
-            alert($el.text());
+        onDeleteClick: function(ev){
+            ev.stopPropagation();
+            this.trigger('contact:delete', this.model);
+        },
+        remove: function(){
+            this.$el.fadeOut(function(){
+                $(this).remove();
+            });
         }
     });
 

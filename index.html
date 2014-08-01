@@ -30,12 +30,22 @@
 
 
 <script id="contact-list-item" type="text/template">
-    <td><%= firstName %></td><td><%= lastName %></td><td><button class="btn btn-small js-delete"><i class="icon-remove"></i>Delete</button></td>
+    <td><%= firstName %></td>
+    <td><%= lastName %></td>
+    <td>
+        <button class="btn btn-default js-delete"><i class="glyphicon glyphicon-remove"></i>Delete</button>
+        <a href="#" class="btn btn-default js-show"><i class="glyphicon glyphicon-eye-open"></i>Show</a>
+    </td>
 </script>
 
 <script id="contact-flat-list" type="text/template">
     <p>Here is the list of all the contacts we have information for:</p>
     <ul></ul>
+</script>
+
+<script id="contact-view" type="text/template">
+    <h1><%= firstName %> <% lastName %></h1>
+    <p><strong>Phone numbert:</strong> <%= phone %></p>
 </script>
 
 
@@ -52,6 +62,8 @@
 <script src="js/entities/contact.js"></script>
 <script src="js/apps/contacts/list/list_view.js"></script>
 <script src="js/apps/contacts/list/list_controller.js"></script>
+<script src="js/apps/contacts/show/show_view.js"></script>
+<script src="js/apps/contacts/show/show_controller.js"></script>
 <script>
     ContactManager.start();
 </script>

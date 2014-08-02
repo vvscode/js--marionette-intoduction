@@ -10,7 +10,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
-            <div class="brand">INTRO</div>
+            <div class="brand"><a href="#">INTRO</a></div>
         </div>
     </div>
 </div>
@@ -34,7 +34,7 @@
     <td><%= lastName %></td>
     <td>
         <button class="btn btn-default js-delete"><i class="glyphicon glyphicon-remove"></i>Delete</button>
-        <a href="#" class="btn btn-default js-show"><i class="glyphicon glyphicon-eye-open"></i>Show</a>
+        <a href="#contacts/<%= id %>" class="btn btn-default js-show"><i class="glyphicon glyphicon-eye-open"></i>Show</a>
     </td>
 </script>
 
@@ -46,6 +46,7 @@
 <script id="contact-view" type="text/template">
     <h1><%= firstName %> <% lastName %></h1>
     <p><strong>Phone numbert:</strong> <%= phone %></p>
+    <a href="#contacts" class="js-list-contacts">Back to list</a>
 </script>
 
 
@@ -64,6 +65,7 @@
 <script src="js/apps/contacts/list/list_controller.js"></script>
 <script src="js/apps/contacts/show/show_view.js"></script>
 <script src="js/apps/contacts/show/show_controller.js"></script>
+<script src="js/apps/contacts/contacts_app.js"></script>
 <script>
     ContactManager.start();
 </script>

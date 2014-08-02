@@ -1,5 +1,12 @@
 ContactManager.module('ContactsApp.Show', function(Show, ContactManager, Backbone, Marionette, $, _){
    Show.Contact = Marionette.ItemView.extend({
-      template: "#contact-view"
+      template: "#contact-view",
+       events: {
+           'click a.js-list-contacts': 'onBackToListClick'
+       },
+       onBackToListClick: function(ev){
+           ev.stopImmediatePropagation();
+           ContactManager.trigger('contacts:list');
+       }
    });
 });

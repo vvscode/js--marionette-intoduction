@@ -3,9 +3,15 @@ ContactManager.module("ContactsApp.Show", function(Show, ContactManaget, Backbon
        showContact: function(id){
            var contacts = ContactManaget.request('contact:entities');
            var model = contacts.get(id);
-           var contactView = new Show.Contact({
-               model: model
-           });
+
+           if(!!model){
+               var contactView = new Show.Contact({
+                   model: model
+               });
+           } else {
+               var contactView = new Show.MissingContact();
+           }
+
 
            ContactManaget.mainRegion.show(contactView);
        }

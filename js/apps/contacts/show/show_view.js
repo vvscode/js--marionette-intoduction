@@ -9,4 +9,8 @@ ContactManager.module('ContactsApp.Show', function(Show, ContactManager, Backbon
            ContactManager.trigger('contacts:list');
        }
    });
+
+    Show.MissingContact = Show.Contact.extend({
+        template: '#missing-contact-view'
+    })
 });

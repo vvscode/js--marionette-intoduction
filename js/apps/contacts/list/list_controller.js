@@ -6,7 +6,7 @@ ContactManager.module('ContactsApp.List', function (List, ContactManager, Backbo
             var contactsListView = new ContactManager.ContactApp.List.Contacts({collection: contacts});
 
             contactsListView.on('itemview:contact:delete', function (childView, model) {
-                contacts.remove(model);
+                model.destroy();
             });
 
             contactsListView.on('itemview:contact:highlighting:toggled', function (childView, model) {

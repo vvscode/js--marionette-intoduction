@@ -50,16 +50,24 @@
 </script>
 
 <script id="missing-contact-view" type="text/template">
-        <div class="alert alert-warning">Contact nor found</div>
+        <div class="alert alert-danger">Contact not found</div>
         <a href="#contacts" class="js-list-contacts">Back to list</a>
 </script>
-
 
 <script id="contact-flat-list-item" type="text/template">
     <%= firstName %> <%= lastName %>
 </script>
 
+<script id="loading-view" type="text/template">
+<h1><%= title %></h1>
+<p><%= message %></p>
+<div id="spinner"></div>
+</script>
+
+
 <script src="assets/jquery/dist/jquery.js"></script>
+<script src="assets/spin.js/spin.js"></script>
+<script src="assets/spin.js/jquery.spin.js"></script>
 <script src="assets/json2/json2.js"></script>
 <script src="assets/lodash/dist/lodash.js"></script>
 <script src="assets/backbone/backbone.js"></script>
@@ -68,6 +76,7 @@
 <script src="assets/backbone.localStorage/backbone.localStorage.js"></script>
 <script src="js/apps/config/storage/localstorage.js"></script>
 <script src="js/entities/contact.js"></script>
+<script src="js/common/views.js"></script>
 <script src="js/apps/contacts/list/list_view.js"></script>
 <script src="js/apps/contacts/list/list_controller.js"></script>
 <script src="js/apps/contacts/show/show_view.js"></script>

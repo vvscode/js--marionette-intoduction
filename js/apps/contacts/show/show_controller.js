@@ -1,19 +1,24 @@
-ContactManager.module("ContactsApp.Show", function(Show, ContactManaget, Backbone, Marionette, $, _){
+ContactManager.module("ContactsApp.Show", function(Show, ContactManager, Backbone, Marionette, $, _){
    Show.Controller = {
        showContact: function(id){
-           var contacts = ContactManaget.request('contact:entities');
-           var model = ContactManaget.request('contact:entity', id);
+           var loadingView = new ContactManager.Common.Views.Loading({
+               title: 'Load contact'
+           });
+           ContactManager.mainRegion.show(loadingView);
 
-           if(!!model){
-               var contactView = new Show.Contact({
-                   model: model
-               });
-           } else {
-               var contactView = new Show.MissingContact();
-           }
+           var promise = ContactManager.request('contact:entity', id);
 
+           $.when(promise).done(function(contact){
+               if(!!contact){
+                   var contactView = new Show.Contact({
+                       model: contact
+                   });
+               } else {
+                   var contactView = new Show.MissingContact();
+               }
 
-           ContactManaget.mainRegion.show(contactView);
+               ContactManager.mainRegion.show(contactView);
+           });
        }
    }
 });

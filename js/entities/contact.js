@@ -39,18 +39,41 @@ ContactManager.module('Entities', function(Entities, ContactManager, Backbone, M
     var API = {
         getContactEntities: function(){
             var contacts = new Entities.ContactCollection();
-            contacts.fetch();
+            var defer = $.Deferred();
+            setTimeout(function(){
+                contacts.fetch({
+                    success: function(data){
+                        defer.resolve(data);
+                    }
+                });
+            }, 5000);
 
-            if(contacts.length == 0){
-                contacts = initializeContacts();
-            }
-            return contacts;
+
+            var promise = defer.promise();
+            $.when(promise).done(function(contacts){
+                if(contacts.length === 0){
+                    var models = initializeContacts();
+                    contacts.reset(models);
+                }
+            });
+            return promise;
         },
 
         getContactEntity: function(id){
             var contact = new Entities.Contact({id: id});
-            contact.fetch();
-            return contact;
+            var defer = $.Deferred();
+            setTimeout(function(){
+                contact.fetch({
+                    success: function(data){
+                        defer.resolve(data);
+                    },
+                    error: function(){
+                        defer.resolve(undefined);
+                    }
+                });
+            }, 2000);
+
+            return defer.promise( );
         }
     };
 

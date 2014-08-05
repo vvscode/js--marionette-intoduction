@@ -45,6 +45,7 @@
 
 <script id="contact-view" type="text/template">
     <h1><%= firstName %> <% lastName %></h1>
+    <a href="#contacts/<%= id %>/edit" class="btn btn-small js-edit"><span  class="glyphicon glyphicon-pencil"></span>Edit</a>
     <p><strong>Phone numbert:</strong> <%= phone %></p>
     <a href="#contacts" class="js-list-contacts">Back to list</a>
 </script>
@@ -64,6 +65,25 @@
 <div id="spinner"></div>
 </script>
 
+<script type="text/template" id="contact-form">
+    <h1>Edit <%= firstName %> <%= lastName %></h1>
+    <form>
+        <div class="control-group">
+            <label class="control-label" for="contact-firstName">First name:</label>
+            <input id="contact-firstName" type="text" name="firstName" value="<%= firstName %>"/>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="contact-lastName">Last name:</label>
+            <input id="contact-lastName" type="text" name="lastName" value="<%= lastName %>"/>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="contact-phone">Phone:</label>
+            <input id="contact-phone" type="text" name="phone" value="<%= phone %>"/>
+        </div>
+        <button class="btn js-submit">Save</button>
+    </form>
+</script>
+
 
 <script src="assets/jquery/dist/jquery.js"></script>
 <script src="assets/spin.js/spin.js"></script>
@@ -71,6 +91,8 @@
 <script src="assets/json2/json2.js"></script>
 <script src="assets/lodash/dist/lodash.js"></script>
 <script src="assets/backbone/backbone.js"></script>
+<script src="assets/backbone.syphon/src/backbone.syphon.js"></script>
+<script src="assets/backbone.syphon/lib/backbone.syphon.js"></script>
 <script src="assets/backbone.marionette/lib/backbone.marionette.js"></script>
 <script src="js/app.js"></script>
 <script src="assets/backbone.localStorage/backbone.localStorage.js"></script>
@@ -81,6 +103,8 @@
 <script src="js/apps/contacts/list/list_controller.js"></script>
 <script src="js/apps/contacts/show/show_view.js"></script>
 <script src="js/apps/contacts/show/show_controller.js"></script>
+<script src="js/apps/contacts/edit/edit_view.js"></script>
+<script src="js/apps/contacts/edit/edit_controller.js"></script>
 <script src="js/apps/contacts/contacts_app.js"></script>
 <script>
     ContactManager.start();

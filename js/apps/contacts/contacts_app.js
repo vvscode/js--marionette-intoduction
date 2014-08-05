@@ -3,6 +3,7 @@ ContactManager.module('ContactsApp', function (ContactsApp, ContatcManager, Back
         appRoutes: {
             'contacts': 'listContacts',
             'contacts/:id': 'showContact',
+            'contacts/:id/edit': 'editContact',
         }
     });
 
@@ -13,6 +14,10 @@ ContactManager.module('ContactsApp', function (ContactsApp, ContatcManager, Back
 
         showContact: function (id) {
             ContactsApp.Show.Controller.showContact(id);
+        },
+
+        editContact: function(id){
+            ContactsApp.Edit.Controller.editContact(id);
         }
     }
 
@@ -21,9 +26,14 @@ ContactManager.module('ContactsApp', function (ContactsApp, ContatcManager, Back
         API.listContacts();
     });
 
-    ContatcManager.on('contacts:show', function (id) {
+    ContatcManager.on('contact:show', function (id) {
         ContatcManager.navigate('contacts/' + id);
         API.showContact(id);
+    });
+
+    ContatcManager.on('contact:edit', function (id) {
+        ContatcManager.navigate('contacts/' + id + '/edit');
+        API.editContact(id);
     });
 
     ContatcManager.addInitializer(function () {

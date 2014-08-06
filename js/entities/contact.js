@@ -5,6 +5,23 @@ ContactManager.module('Entities', function(Entities, ContactManager, Backbone, M
             firstName: '',
             lastName: '',
             phone: 'No phone number!'
+        },
+        validate: function(attrs, options){
+            var errors = {};
+
+            if(! attrs.firstName ){
+                errors.firstName = 'Can\'t be blank';
+            } else if (attrs.firstName.length < 2 ){
+                errors.firstName = 'Too short';
+            }
+
+            if(!attrs.lastName){
+                errors.lastName = 'Can\'t be blank';
+            }
+
+            if(!_.isEmpty(errors)){
+                return errors;
+            }
         }
     });
 
@@ -46,7 +63,7 @@ ContactManager.module('Entities', function(Entities, ContactManager, Backbone, M
                         defer.resolve(data);
                     }
                 });
-            }, 5000);
+            }, 500);
 
 
             var promise = defer.promise();
@@ -71,7 +88,7 @@ ContactManager.module('Entities', function(Entities, ContactManager, Backbone, M
                         defer.resolve(undefined);
                     }
                 });
-            }, 2000);
+            }, 200);
 
             return defer.promise( );
         }

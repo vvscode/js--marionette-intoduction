@@ -20,7 +20,7 @@ ContactManager.module('ContactsApp.List', function (List, ContactManager, Backbo
                 });
 
                 contactsListView.on('itemview:contact:show', function (childView, model) {
-                    ContactManager.trigger('contacts:show', model.get('id'));
+                    ContactManager.trigger('contact:show', model.get('id'));
                 });
 
                 ContactManager.mainRegion.show(contactsListView);

@@ -10,8 +10,24 @@ ContactManager.module('ContactsApp.Edit', function(Edit, ContactManager, Backbon
             var data = Backbone.Syphon.serialize(this);
             this.trigger('form:submit', data);
         },
-        clearFormErrors: function(){
-
+        initialize: function(){
+           this.title = 'Edit ' + this.model.get('firstName');
+           this.title += ' ' + this.model.get('lastName');
+        },
+        onRender: function(){
+            if(!this.options.asModal){
+                var $title = $('<h1>', {text: this.title});
+                this.$el.prepend($title);
+            }
+        },
+        onShow: function(){
+            if(this.options.asModal){
+                this.$el.dialog({
+                    modal: true,
+                    title: this.title,
+                    width: 600
+                });
+            }
         },
         onFormDataInvalid: function(errors){
             var self = this;

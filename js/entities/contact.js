@@ -4,7 +4,7 @@ ContactManager.module('Entities', function(Entities, ContactManager, Backbone, M
         defaults: {
             firstName: '',
             lastName: '',
-            phone: 'No phone number!'
+            phone: ''
         },
         validate: function(attrs, options){
             var errors = {};

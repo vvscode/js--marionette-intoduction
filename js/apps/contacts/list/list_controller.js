@@ -8,8 +8,41 @@ ContactManager.module('ContactsApp.List', function (List, ContactManager, Backbo
 
             var contactsPromise = ContactManager.request('contact:entities');
 
+            var contactsListLayout = new ContactManager.ContactApp.List.Layout();
+            var contactsListPanel = new ContactManager.ContactApp.List.Panel();
+
             $.when(contactsPromise).done(function(contacts){
                 var contactsListView = new ContactManager.ContactApp.List.Contacts({collection: contacts});
+
+                contactsListLayout.on('show', function(){
+                   contactsListLayout.panelRegion.show(contactsListPanel);
+                    contactsListLayout.contactsRegion.show(contactsListView);
+                });
+
+                contactsListPanel.on('contact:new', function(){
+                   var newContact = new ContactManager.Entities.Contact();
+
+                    var view = new ContactManager.ContactsApp.New.Contact({
+                       model: newContact,
+                        asModal: true
+                    });
+
+                    view.on('form:submit', function(data){
+                        var highestId = contacts.max(function(c){ return c.id});
+                        highestId = highestId.get('id');
+                        data.id = highestId + 1;
+
+                        if(newContact.save(data)){
+                            contacts.add(newContact);
+                            ContactManager.dialogRegion.close();
+                            contactsListView.children.findByModel(newContact).flash('success');
+                        } else {
+                            view.triggerMethod('form:data:invalid', newContact.validationError);
+                        }
+                    });
+
+                    ContactManager.dialogRegion.show(view);
+                });
 
                 contactsListView.on('itemview:contact:delete', function (childView, model) {
                     model.destroy();
@@ -42,7 +75,7 @@ ContactManager.module('ContactsApp.List', function (List, ContactManager, Backbo
                     ContactManager.dialogRegion.show(view);
                 });
 
-                ContactManager.mainRegion.show(contactsListView);
+                ContactManager.mainRegion.show(contactsListLayout);
             });
         }
     }

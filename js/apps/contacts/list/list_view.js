@@ -12,6 +12,20 @@ ContactManager.module('ContactApp.List', function(List, ContactManager, Backbone
        template: '#contacts-list-panel',
         triggers: {
             'click button.js-new': 'contact:new'
+        },
+        events: {
+            'click button.js-filter': 'onFilterClick'
+        },
+        ui: {
+          criterion: 'input.js-filter-criterion'
+        },
+        onFilterClick: function(ev){
+            ev.preventDefault();
+            var criterion = $(this.ui.criterion).val();
+            this.trigger('contacts:filter', criterion);
+        },
+        onSetFilterCriterion: function(criterion){
+            $(this.ui.criterion).val(criterion);
         }
     });
 
@@ -57,16 +71,23 @@ ContactManager.module('ContactApp.List', function(List, ContactManager, Backbone
         },
     });
 
+    var NoContactsView = Marionette.ItemView.extend({
+        template: '#contacts-list-none',
+        tagName: 'tr',
+        className: 'alert'
+    });
+
     List.Contacts =  Backbone.Marionette.CompositeView.extend({
         tagName: 'table',
         className: 'table table-hover',
         itemView: List.Contact,
+        emptyView: NoContactsView,
         itemViewContainer: 'tbody',
         template: '#contact-list',
         initialize: function(){
             this.listenTo(this.collection, 'reset', function(){
                 this.appendHtml = function(collectionView, itemView, index){
-                    collectionView.$el.append(itemvie.el);
+                    collectionView.$el.append(itemView.el);
                 }
             });
         },
@@ -81,4 +102,6 @@ ContactManager.module('ContactApp.List', function(List, ContactManager, Backbone
             }
         }
     });
+
+
 });

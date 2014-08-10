@@ -8,19 +8,31 @@
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <div class="brand"><a href="#">INTRO</a></div>
-        </div>
-    </div>
-</div>
+
+<div id="header-region"></div>
 
 <div id="main-region" class="container">
     Main region - content will be replaced on app start
 </div>
 
 <div id="dialog-region"></div>
+
+<script type="text/template" id="header-template">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#contacts">Contact manager</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+            </ul>
+        </div>
+    </div>
+</script>
+
+<script type="text-template" id="header-link">
+    <a href="#<%= url %>"><%= name %></a>
+</script>
 
 <script id="contact-list" type="text/template">
     <thead>
@@ -106,6 +118,10 @@
 <td colspan="3">No contacts to display</td>
 </script>
 
+<script type="text/template" id="about-message">
+    <h1>About this application</h1>
+    <p>This app was created on revieing Marionette API</p>
+</script>
 
 
 
@@ -116,17 +132,23 @@
 <script src="assets/spin.js/spin.js"></script>
 <script src="assets/spin.js/jquery.spin.js"></script>
 <script src="assets/json2/json2.js"></script>
-<script src="assets/lodash/dist/lodash.js"></script>
+<script src="assets/lodash/dist/lodash.underscore.js"></script>
 <script src="assets/backbone/backbone.js"></script>
+<script src="assets/backbone.picky/src/backbone.picky.js"></script>
 <script src="assets/backbone.syphon/src/backbone.syphon.js"></script>
 <script src="assets/backbone.syphon/lib/backbone.syphon.js"></script>
 <script src="assets/backbone.marionette/lib/backbone.marionette.js"></script>
-<script src="js/app.js"></script>
 <script src="assets/backbone.localStorage/backbone.localStorage.js"></script>
+
+<script src="js/app.js"></script>
 <script src="js/apps/config/storage/localstorage.js"></script>
+
 <script src="js/entities/common.js"></script>
 <script src="js/entities/contact.js"></script>
+<script src="js/entities/header.js"></script>
+
 <script src="js/common/views.js"></script>
+
 <script src="js/apps/contacts/list/list_view.js"></script>
 <script src="js/apps/contacts/common/views.js"></script>
 <script src="js/apps/contacts/list/list_controller.js"></script>
@@ -135,6 +157,18 @@
 <script src="js/apps/contacts/edit/edit_view.js"></script>
 <script src="js/apps/contacts/new/new_view.js"></script>
 <script src="js/apps/contacts/edit/edit_controller.js"></script>
+
+<script src="js/apps/about/show/show_view.js"></script>
+<script src="js/apps/about/show/show_controller.js"></script>
+<script src="js/apps/about/about_app.js"></script>
+
+<script src="js/apps/header/list/list_view.js"></script>
+<script src="js/apps/header/list/list_controller.js"></script>
+<script src="js/apps/header/header_app.js"></script>
+
+<script src="js/apps/about/about_app.js"></script>
+
+
 <script src="js/apps/contacts/contacts_app.js"></script>
 <script>
     ContactManager.start();

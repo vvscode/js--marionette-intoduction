@@ -3,6 +3,7 @@ var ContactManager = new Marionette.Application;
 ContactManager.addRegions({
     mainRegion: "#main-region",
     dialogRegion: "#dialog-region",
+    headerRegion: '#header-region'
 });
 
 ContactManager.getCurrentRoute = function(){

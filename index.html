@@ -17,161 +17,163 @@
 
 <div id="dialog-region"></div>
 
-<script type="text/template" id="header-template">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#contacts">Contact manager</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+<!--<script type="text/template" id="header-template">-->
+    <!--<div class="container">-->
+        <!--<div class="navbar-header">-->
+            <!--<a class="navbar-brand" href="#contacts">Contact manager</a>-->
+        <!--</div>-->
+        <!--<div class="navbar-collapse collapse">-->
+            <!--<ul class="nav navbar-nav">-->
 
-            </ul>
-        </div>
-    </div>
-</script>
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</script>-->
 
-<script type="text-template" id="header-link">
-    <a href="#<%= url %>"><%= name %></a>
-</script>
+<!--<script type="text-template" id="header-link">-->
+    <!--<a href="#<%= url %>"><%= name %></a>-->
+<!--</script>-->
 
-<script id="contact-list" type="text/template">
-    <thead>
-    <tr>
-    <th>First name</th><th>Last name</th>
-    </tr>
-    </thead>
-    <tbody></tbody>
-</script>
-
-
-<script id="contact-list-item" type="text/template">
-    <td><%= firstName %></td>
-    <td><%= lastName %></td>
-    <td>
-        <button class="btn btn-default js-delete"><i class="glyphicon glyphicon-remove"></i>Delete</button>
-        <a href="#contacts/<%= id %>" class="btn btn-default js-show"><i class="glyphicon glyphicon-eye-open"></i>Show</a>
-        <a href="#contacts/<%= id %>/edit" class="btn btn-default  js-edit"><span  class="glyphicon glyphicon-pencil"></span>Edit</a>
-    </td>
-</script>
-
-<script id="contact-flat-list" type="text/template">
-    <p>Here is the list of all the contacts we have information for:</p>
-    <ul></ul>
-</script>
-
-<script id="contact-view" type="text/template">
-    <h1><%= firstName %> <% lastName %></h1>
-    <a href="#contacts/<%= id %>/edit" class="btn btn-small js-edit"><span  class="glyphicon glyphicon-pencil"></span>Edit</a>
-    <p><strong>Phone numbert:</strong> <%= phone %></p>
-    <a href="#contacts" class="js-list-contacts">Back to list</a>
-</script>
-
-<script id="missing-contact-view" type="text/template">
-        <div class="alert alert-danger">Contact not found</div>
-        <a href="#contacts" class="js-list-contacts">Back to list</a>
-</script>
-
-<script id="contact-flat-list-item" type="text/template">
-    <%= firstName %> <%= lastName %>
-</script>
-
-<script id="loading-view" type="text/template">
-<h1><%= title %></h1>
-<p><%= message %></p>
-<div id="spinner"></div>
-</script>
-
-<script type="text/template" id="contact-form">
-    <form>
-        <div class="control-group">
-            <label class="control-label" for="contact-firstName">First name:</label>
-            <input id="contact-firstName" type="text" name="firstName" value="<%= firstName %>"/>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="contact-lastName">Last name:</label>
-            <input id="contact-lastName" type="text" name="lastName" value="<%= lastName %>"/>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="contact-phone">Phone:</label>
-            <input id="contact-phone" type="text" name="phone" value="<%= phone %>"/>
-        </div>
-        <button class="btn js-submit">Save</button>
-    </form>
-</script>
-
-<script type="text/template" id="contact-list-layout">
-    <div id="panel-region"></div>
-    <div id="contacts-region"></div>
-</script>
-
-<script type="text/template" id="contacts-list-panel">
-    <button class="btn btn-primary js-new">New contact</button>
-    <form class="form-search form-inline pull-right">
-        <div class="input-append">
-            <input class="span2 search-query js-filter-criterion" type="text"/>
-            <button class="btn js-filter">Filter contacts</button>
-        </div>
-    </form>
-</script>
-
-<script type="text/template" id="contacts-list-none">
-<td colspan="3">No contacts to display</td>
-</script>
-
-<script type="text/template" id="about-message">
-    <h1>About this application</h1>
-    <p>This app was created on revieing Marionette API</p>
-</script>
+<!--<script id="contact-list" type="text/template">-->
+    <!--<thead>-->
+    <!--<tr>-->
+    <!--<th>First name</th><th>Last name</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody></tbody>-->
+<!--</script>-->
 
 
+<!--<script id="contact-list-item" type="text/template">-->
+    <!--<td><%= firstName %></td>-->
+    <!--<td><%= lastName %></td>-->
+    <!--<td>-->
+        <!--<button class="btn btn-default js-delete"><i class="glyphicon glyphicon-remove"></i>Delete</button>-->
+        <!--<a href="#contacts/<%= id %>" class="btn btn-default js-show"><i class="glyphicon glyphicon-eye-open"></i>Show</a>-->
+        <!--<a href="#contacts/<%= id %>/edit" class="btn btn-default  js-edit"><span  class="glyphicon glyphicon-pencil"></span>Edit</a>-->
+    <!--</td>-->
+<!--</script>-->
+
+<!--<script id="contact-flat-list" type="text/template">-->
+    <!--<p>Here is the list of all the contacts we have information for:</p>-->
+    <!--<ul></ul>-->
+<!--</script>-->
+
+<!--<script id="contact-view" type="text/template">-->
+    <!--<h1><%= firstName %> <% lastName %></h1>-->
+    <!--<a href="#contacts/<%= id %>/edit" class="btn btn-small js-edit"><span  class="glyphicon glyphicon-pencil"></span>Edit</a>-->
+    <!--<p><strong>Phone numbert:</strong> <%= phone %></p>-->
+    <!--<a href="#contacts" class="js-list-contacts">Back to list</a>-->
+<!--</script>-->
+
+<!--<script id="missing-contact-view" type="text/template">-->
+        <!--<div class="alert alert-danger">Contact not found</div>-->
+        <!--<a href="#contacts" class="js-list-contacts">Back to list</a>-->
+<!--</script>-->
+
+<!--<script id="contact-flat-list-item" type="text/template">-->
+    <!--<%= firstName %> <%= lastName %>-->
+<!--</script>-->
+
+<!--<script id="loading-view" type="text/template">-->
+<!--<h1><%= title %></h1>-->
+<!--<p><%= message %></p>-->
+<!--<div id="spinner"></div>-->
+<!--</script>-->
+
+<!--<script type="text/template" id="contact-form">-->
+    <!--<form>-->
+        <!--<div class="control-group">-->
+            <!--<label class="control-label" for="contact-firstName">First name:</label>-->
+            <!--<input id="contact-firstName" type="text" name="firstName" value="<%= firstName %>"/>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+            <!--<label class="control-label" for="contact-lastName">Last name:</label>-->
+            <!--<input id="contact-lastName" type="text" name="lastName" value="<%= lastName %>"/>-->
+        <!--</div>-->
+        <!--<div class="control-group">-->
+            <!--<label class="control-label" for="contact-phone">Phone:</label>-->
+            <!--<input id="contact-phone" type="text" name="phone" value="<%= phone %>"/>-->
+        <!--</div>-->
+        <!--<button class="btn js-submit">Save</button>-->
+    <!--</form>-->
+<!--</script>-->
+
+<!--<script type="text/template" id="contact-list-layout">-->
+    <!--<div id="panel-region"></div>-->
+    <!--<div id="contacts-region"></div>-->
+<!--</script>-->
+
+<!--<script type="text/template" id="contacts-list-panel">-->
+    <!--<button class="btn btn-primary js-new">New contact</button>-->
+    <!--<form class="form-search form-inline pull-right">-->
+        <!--<div class="input-append">-->
+            <!--<input class="span2 search-query js-filter-criterion" type="text"/>-->
+            <!--<button class="btn js-filter">Filter contacts</button>-->
+        <!--</div>-->
+    <!--</form>-->
+<!--</script>-->
+
+<!--<script type="text/template" id="contacts-list-none">-->
+<!--<td colspan="3">No contacts to display</td>-->
+<!--</script>-->
+
+<!--<script type="text/template" id="about-message">-->
+    <!--<h1>About this application</h1>-->
+    <!--<p>This app was created on revieing Marionette API</p>-->
+<!--</script>-->
 
 
 
-<script src="assets/jquery/dist/jquery.js"></script>
-<script src="assets/jquery-ui/jquery-ui.js"></script>
-<script src="assets/spin.js/spin.js"></script>
-<script src="assets/spin.js/jquery.spin.js"></script>
-<script src="assets/json2/json2.js"></script>
-<script src="assets/lodash/dist/lodash.underscore.js"></script>
-<script src="assets/backbone/backbone.js"></script>
-<script src="assets/backbone.picky/src/backbone.picky.js"></script>
-<script src="assets/backbone.syphon/src/backbone.syphon.js"></script>
-<script src="assets/backbone.syphon/lib/backbone.syphon.js"></script>
-<script src="assets/backbone.marionette/lib/backbone.marionette.js"></script>
-<script src="assets/backbone.localStorage/backbone.localStorage.js"></script>
-
-<script src="js/app.js"></script>
-<script src="js/apps/config/storage/localstorage.js"></script>
-
-<script src="js/entities/common.js"></script>
-<script src="js/entities/contact.js"></script>
-<script src="js/entities/header.js"></script>
-
-<script src="js/common/views.js"></script>
-
-<script src="js/apps/contacts/list/list_view.js"></script>
-<script src="js/apps/contacts/common/views.js"></script>
-<script src="js/apps/contacts/list/list_controller.js"></script>
-<script src="js/apps/contacts/show/show_view.js"></script>
-<script src="js/apps/contacts/show/show_controller.js"></script>
-<script src="js/apps/contacts/edit/edit_view.js"></script>
-<script src="js/apps/contacts/new/new_view.js"></script>
-<script src="js/apps/contacts/edit/edit_controller.js"></script>
-
-<script src="js/apps/about/show/show_view.js"></script>
-<script src="js/apps/about/show/show_controller.js"></script>
-<script src="js/apps/about/about_app.js"></script>
-
-<script src="js/apps/header/list/list_view.js"></script>
-<script src="js/apps/header/list/list_controller.js"></script>
-<script src="js/apps/header/header_app.js"></script>
-
-<script src="js/apps/about/about_app.js"></script>
 
 
-<script src="js/apps/contacts/contacts_app.js"></script>
-<script>
-    ContactManager.start();
-</script>
+<!--<script src="assets/jquery/dist/jquery.js"></script>-->
+<!--<script src="assets/jquery-ui/jquery-ui.js"></script>-->
+<!--<script src="assets/spin.js/spin.js"></script>-->
+<!--<script src="assets/spin.js/jquery.spin.js"></script>-->
+<!--<script src="assets/json2/json2.js"></script>-->
+<!--<script src="assets/lodash/dist/lodash.underscore.js"></script>-->
+<!--<script src="assets/backbone/backbone.js"></script>-->
+<!--<script src="assets/backbone.picky/src/backbone.picky.js"></script>-->
+<!--<script src="assets/backbone.syphon/src/backbone.syphon.js"></script>-->
+<!--<script src="assets/backbone.syphon/lib/backbone.syphon.js"></script>-->
+<!--<script src="assets/backbone.marionette/lib/backbone.marionette.js"></script>-->
+<!--<script src="assets/backbone.localStorage/backbone.localStorage.js"></script>-->
+
+<!--<script src="js/app.js"></script>-->
+<!--<script src="js/apps/config/storage/localstorage.js"></script>-->
+
+<!--<script src="js/entities/common.js"></script>-->
+<!--<script src="js/entities/contact.js"></script>-->
+<!--<script src="js/entities/header.js"></script>-->
+
+<!--<script src="js/common/views.js"></script>-->
+
+<!--<script src="js/apps/contacts/list/list_view.js"></script>-->
+<!--<script src="js/apps/contacts/common/views.js"></script>-->
+<!--<script src="js/apps/contacts/list/list_controller.js"></script>-->
+<!--<script src="js/apps/contacts/show/show_view.js"></script>-->
+<!--<script src="js/apps/contacts/show/show_controller.js"></script>-->
+<!--<script src="js/apps/contacts/edit/edit_view.js"></script>-->
+<!--<script src="js/apps/contacts/new/new_view.js"></script>-->
+<!--<script src="js/apps/contacts/edit/edit_controller.js"></script>-->
+
+<!--<script src="js/apps/about/show/show_view.js"></script>-->
+<!--<script src="js/apps/about/show/show_controller.js"></script>-->
+<!--<script src="js/apps/about/about_app.js"></script>-->
+
+<!--<script src="js/apps/header/list/list_view.js"></script>-->
+<!--<script src="js/apps/header/list/list_controller.js"></script>-->
+<!--<script src="js/apps/header/header_app.js"></script>-->
+
+<!--<script src="js/apps/about/about_app.js"></script>-->
+
+
+<!--<script src="js/apps/contacts/contacts_app.js"></script>-->
+<!--<script>-->
+    <!--ContactManager.start();-->
+<!--</script>-->
+
+<script data-main="js/require_main.js" src="assets/requirejs/require.js"></script>
 </body>
 </html>

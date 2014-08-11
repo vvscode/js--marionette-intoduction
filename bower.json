@@ -21,6 +21,7 @@
     "backbone.syphon": "~0.4.1",
     "jquery.ui": "~1.11.0",
     "jquery-ui-bootstrap": "~0.2.5",
-    "backbone.picky": "~0.2.0"
+    "backbone.picky": "~0.2.0",
+    "requirejs": "~2.1.14"
   }
 }

@@ -6,7 +6,10 @@ requirejs.config({
         'json2': '../assets/json2/json2',
         'marionette': '../assets/backbone.marionette/lib/backbone.marionette',
         'underscore': '../assets/lodash/dist/lodash.underscore',
-        'jquery-ui': '../assets/jquery-ui/jquery-ui'
+        'jquery-ui': '../assets/jquery-ui/jquery-ui',
+        'localstorage': '../assets/backbone.localStorage/backbone.localStorage',
+        'tpl': '../assets/requirejs-underscore-tpl/underscore-tpl',
+        'text': '../assets/requirejs-text/text'
     },
 
     shim: {
@@ -21,9 +24,9 @@ requirejs.config({
             deps: ['backbone'],
             exports: 'Marionette'
         },
-        'jquery-ui': {
-            deps: ['jquery']
-        }
+        'jquery-ui':  ['jquery'],
+        'localstorage': ['backbone'],
+        'tpl': ['text']
     }
 
 })

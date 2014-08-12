@@ -1,4 +1,7 @@
-define(['marionette', 'apps/config/marionette/regions/dialog'], function (Marionette) {
+define([
+    'marionette',
+    'apps/config/marionette/regions/dialog'
+], function (Marionette) {
     var ContactManager = new Marionette.Application;
 
     ContactManager.addRegions({
@@ -19,13 +22,14 @@ define(['marionette', 'apps/config/marionette/regions/dialog'], function (Marion
     }
 
     ContactManager.on('initialize:after', function () {
-        alert('App start');
         if (Backbone.history) {
-            Backbone.history.start();
+            require(['apps/contacts/contacts_app'], function(){
+                Backbone.history.start();
 
-            if (this.getCurrentRoute() === "") {
-                ContactManager.trigger('contacts:list');
-            }
+                if (ContactManager.getCurrentRoute() === "") {
+                    ContactManager.trigger('contacts:list');
+                }
+            });
         }
     });
 

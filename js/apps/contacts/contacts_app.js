@@ -38,6 +38,7 @@ define(['app'], function(ContactManager){
         });
 
         ContactManager.on('contact:edit', function (id) {
+            debugger;
             ContactManager.navigate('contacts/' + id + '/edit');
             API.editContact(id);
         });

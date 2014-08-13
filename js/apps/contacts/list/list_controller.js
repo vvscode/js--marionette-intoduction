@@ -99,25 +99,29 @@ define([
                         });
 
                         contactsListView.on('itemview:contact:edit', function (childView, model) {
-                            var view = new ContactManager.ContactsApp.Edit.Contact({
-                                model: model,
-                                asModal: true
-                            });
+                            require(['apps/contacts/edit/edit_view'], function (EditView) {
 
-                            view.on('form:submit', function (data) {
-                                if (model.save(data)) {
-                                    childView.render();
-                                    ContactManager.dialogRegion.close();
-                                    childView.flash('success');
-                                } else {
-                                    view.triggerMethod('form:data:invalid', model.validationError);
-                                }
-                            });
+                                var view = new EditView.Contact({
+                                    model: model,
+                                    //asModal: true
+                                });
 
-                            ContactManager.dialogRegion.show(view);
+                                view.on('form:submit', function (data) {
+                                    if (model.save(data)) {
+                                        childView.render();
+                                        ContactManager.dialogRegion.close();
+                                        childView.flash('success');
+                                    } else {
+                                        view.triggerMethod('form:data:invalid', model.validationError);
+                                    }
+                                });
+
+                                ContactManager.dialogRegion.show(view);
+                            });
                         });
 
                         ContactManager.mainRegion.show(contactsListLayout);
+
                     });
                 });
             }

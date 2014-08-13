@@ -8,6 +8,7 @@ requirejs.config({
         'underscore': '../assets/lodash/dist/lodash.underscore',
         'jquery-ui': '../assets/jquery-ui/jquery-ui',
         'localstorage': '../assets/backbone.localStorage/backbone.localStorage',
+        'backbone.syphon': '../assets/backbone.syphon/lib/backbone.syphon',
         'tpl': '../assets/requirejs-underscore-tpl/underscore-tpl',
         'text': '../assets/requirejs-text/text'
     },
@@ -24,13 +25,14 @@ requirejs.config({
             deps: ['backbone'],
             exports: 'Marionette'
         },
-        'jquery-ui':  ['jquery'],
+        'jquery-ui': ['jquery'],
         'localstorage': ['backbone'],
-        'tpl': ['text']
+        'tpl': ['text'],
+        'backbone.syphon': ['backbone']
     }
 
 })
 
-require(['app'], function(ContactManager){
+require(['app'], function (ContactManager) {
     ContactManager.start();
 })

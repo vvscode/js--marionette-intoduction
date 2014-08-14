@@ -56,34 +56,36 @@ define([
                         });
 
                         contactsListPanel.on('contact:new', function () {
-                            var newContact = new ContactManager.Entities.Contact();
+                            require(['apps/contacts/new/new_view'], function(NewView){
+                                var newContact = ContactManager.request('contact:entity:new');
 
-                            var view = new ContactManager.ContactsApp.New.Contact({
-                                model: newContact,
-                                asModal: true
-                            });
-
-                            view.on('form:submit', function (data) {
-                                var highestId = contacts.max(function (c) {
-                                    return c.id
+                                var view = new NewView.Contact({
+                                    model: newContact,
+                                    //asModal: true
                                 });
-                                highestId = highestId.get('id');
-                                data.id = highestId + 1;
 
-                                if (newContact.save(data)) {
-                                    contacts.add(newContact);
-                                    view.trigger('dialog:close');
-                                    var newContactView = contactsListView.children.findByModel(newContact);
+                                view.on('form:submit', function (data) {
+                                    var highestId = contacts.max(function (c) {
+                                        return c.id
+                                    });
+                                    highestId = highestId.get('id');
+                                    data.id = highestId + 1;
 
-                                    if(newContactView){
-                                        contactsListView.children.findByModel(newContact).flash('success');
+                                    if (newContact.save(data)) {
+                                        contacts.add(newContact);
+                                        view.trigger('dialog:close');
+                                        var newContactView = contactsListView.children.findByModel(newContact);
+
+                                        if(newContactView){
+                                            contactsListView.children.findByModel(newContact).flash('success');
+                                        }
+                                    } else {
+                                        view.triggerMethod('form:data:invalid', newContact.validationError);
                                     }
-                                } else {
-                                    view.triggerMethod('form:data:invalid', newContact.validationError);
-                                }
-                            });
+                                });
 
-                            ContactManager.dialogRegion.show(view);
+                                ContactManager.dialogRegion.show(view);
+                            });
                         });
 
                         contactsListView.on('itemview:contact:delete', function (childView, model) {

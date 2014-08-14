@@ -1,4 +1,4 @@
-define(['app', 'entities/contact'], function(ContactManager){
+define(['app'], function(ContactManager){
     ContactManager.module('Entities', function(Entities, ContactManager, Backbone, Marionette, $, _){
         Entities.FilteredCollection = function(options){
             var original = options.collection;

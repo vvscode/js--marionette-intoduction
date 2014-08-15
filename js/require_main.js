@@ -10,6 +10,8 @@ requirejs.config({
         'localstorage': '../assets/backbone.localStorage/backbone.localStorage',
         'backbone.syphon': '../assets/backbone.syphon/lib/backbone.syphon',
         'tpl': '../assets/requirejs-underscore-tpl/underscore-tpl',
+        'spin': '../assets/spin.js/spin',
+        'spin.jquery': '../assets/spin.js/jquery.spin',
         'text': '../assets/requirejs-text/text'
     },
 
@@ -27,6 +29,7 @@ requirejs.config({
         },
         'jquery-ui': ['jquery'],
         'localstorage': ['backbone'],
+        'spin.jquery': ['spin'],
         'tpl': ['text'],
         'backbone.syphon': ['backbone']
     }

@@ -17,13 +17,17 @@ define(['app'], function(ContactManager){
             },
 
             showContact: function (id) {
-                ContactsApp.Show.Controller.showContact(id);
-                ContactManager.execute('set:active:header','contacts');
+                require(['apps/contacts/show/show_controller'], function(ShowController){
+                    ShowController.showContact(id);
+                    ContactManager.execute('set:active:header','contacts');
+                });
             },
 
             editContact: function(id){
-                ContactsApp.Edit.Controller.editContact(id);
-                ContactManager.execute('set:active:header','contacts');
+                require(['apps/contacts/edit/edit_controller'], function(EditController){
+                    EditController.editContact(id);
+                    ContactManager.execute('set:active:header','contacts');
+                });
             }
         }
 
@@ -38,7 +42,6 @@ define(['app'], function(ContactManager){
         });
 
         ContactManager.on('contact:edit', function (id) {
-            debugger;
             ContactManager.navigate('contacts/' + id + '/edit');
             API.editContact(id);
         });

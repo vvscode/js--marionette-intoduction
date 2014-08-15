@@ -1,12 +1,18 @@
-define(['app'], function(ContactManage){
+define(['app', 'tpl!common/templates/loading.tpl', 'spin.jquery'], function(ContactManager, loadingTpl){
     ContactManager.module('Common.Views', function (Views, ContactManager, Backbone, Marionette, $, _) {
         Views.Loading = Marionette.ItemView.extend({
-            template: '#loading-view',
+            template: loadingTpl,
+
+            initialize: function(options){
+                var opts = options || {};
+                this.title = opts.title || "Loading data";
+                this.message = opts.message || "Please wait...";
+            },
 
             serializeData: function () {
                 return {
-                    title: this.options.title || 'Loading data',
-                    message: this.options.massage || 'Please wait, data is loading'
+                    title: this.title ,
+                    message: this.message
                 }
             },
 
@@ -34,5 +40,5 @@ define(['app'], function(ContactManage){
         })
     });
 
-    return ContactManager.ContactsApp.Common.Views;
+    return ContactManager.Common.Views;
 });

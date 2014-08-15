@@ -34,36 +34,6 @@
     <a href="#<%= url %>"><%= name %></a>
 </script>
 
-
-<script id="contact-flat-list" type="text/template">
-    <p>Here is the list of all the contacts we have information for:</p>
-    <ul></ul>
-</script>
-
-<script id="contact-view" type="text/template">
-    <h1><%= firstName %> <% lastName %></h1>
-    <a href="#contacts/<%= id %>/edit" class="btn btn-small js-edit"><span  class="glyphicon glyphicon-pencil"></span>Edit</a>
-    <p><strong>Phone numbert:</strong> <%= phone %></p>
-    <a href="#contacts" class="js-list-contacts">Back to list</a>
-</script>
-
-<script id="missing-contact-view" type="text/template">
-        <div class="alert alert-danger">Contact not found</div>
-        <a href="#contacts" class="js-list-contacts">Back to list</a>
-</script>
-
-<script id="contact-flat-list-item" type="text/template">
-    <%= firstName %> <%= lastName %>
-</script>
-
-<script id="loading-view" type="text/template">
-<h1><%= title %></h1>
-<p><%= message %></p>
-<div id="spinner"></div>
-</script>
-
-
-
 <script type="text/template" id="about-message">
     <h1>About this application</h1>
     <p>This app was created on revieing Marionette API</p>

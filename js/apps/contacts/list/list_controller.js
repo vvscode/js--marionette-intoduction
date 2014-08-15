@@ -5,11 +5,11 @@ define([
     ContactManager.module('ContactsApp.List', function (List, ContactManager, Backbone, Marionette, $, _) {
         List.Controller = {
             listContacts: function (criterion) {
-                require(['entities/contact', 'entities/common'], function(){
-//                    var loadingView = new ContactManager.Common.Views.Loading({
-//                        title: 'Load list'
-//                    });
-//                    ContactManager.mainRegion.show(loadingView);
+                require(['common/views','entities/contact', 'entities/common'], function(CommonViews){
+                    var loadingView = new CommonViews.Loading({
+                        title: 'Load list'
+                    });
+                    ContactManager.mainRegion.show(loadingView);
 
 
                     var contactsPromise = ContactManager.request('contact:entities');
@@ -18,7 +18,7 @@ define([
                     var contactsListPanel = new View.Panel();
 
                     $.when(contactsPromise).done(function (contacts) {
-                        var filteredContacts = ContactManager.Entities.FilteredCollection({
+                        var filteredContacts = new ContactManager.Entities.FilteredCollection({
                             collection: contacts,
                             filterFunction: function (filterCriterion) {
                                 var criterion = filterCriterion.toLowerCase();

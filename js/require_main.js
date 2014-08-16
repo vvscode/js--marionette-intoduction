@@ -12,7 +12,8 @@ requirejs.config({
         'tpl': '../assets/requirejs-underscore-tpl/underscore-tpl',
         'spin': '../assets/spin.js/spin',
         'spin.jquery': '../assets/spin.js/jquery.spin',
-        'text': '../assets/requirejs-text/text'
+        'text': '../assets/requirejs-text/text',
+        'backbone.picky': '../assets/backbone.picky/src/backbone.picky'
     },
 
     shim: {
@@ -31,11 +32,12 @@ requirejs.config({
         'localstorage': ['backbone'],
         'spin.jquery': ['spin'],
         'tpl': ['text'],
-        'backbone.syphon': ['backbone']
+        'backbone.syphon': ['backbone'],
+        'backbone.picky': ['backbone']
     }
 
 })
 
-require(['app'], function (ContactManager) {
+require(['app', 'apps/header/header_app'], function (ContactManager) {
     ContactManager.start();
 })

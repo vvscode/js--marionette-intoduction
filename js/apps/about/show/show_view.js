@@ -1,5 +1,9 @@
-ContactManager.module('AboutApp.Show', function(Show, ContactManager, Backbone, Marionette, $, _){
-     Show.Message = Marionette.ItemView.extend({
-        template: "#about-message"
-     });
+define(['app', 'tpl!apps/about/show/templates/about.tpl'], function(ContactManager, aboutTpl){
+    ContactManager.module('AboutApp.Show.Views', function(Views, ContactManager, Backbone, Marionette, $, _){
+        Views.Message = Marionette.ItemView.extend({
+            template: aboutTpl
+        });
+    });
+
+    return ContactManager.AboutApp.Show.Views;
 });

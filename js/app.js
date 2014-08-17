@@ -14,12 +14,27 @@ define([
 
     ContactManager.getCurrentRoute = function () {
         return Backbone.history.fragment;
-    }
+    };
 
     ContactManager.navigate = function (route, options) {
         options = options || {};
         Backbone.history.navigate(route, options);
-    }
+    };
+
+    ContactManager.startSubApp = function(appName, args){
+        var currentApp = appname? ContactManager.module(appName): null;
+
+        if(ContactManager.currentApp === currentApp){return;}
+
+        if(ContactManager.currentApp){
+            ContactManager.currentApp.stop();
+        }
+
+        ContactManager.currentApp = currentApp;
+        if(currentApp){
+            currentApp.start(args);
+        }
+    };
 
     ContactManager.on('initialize:after', function () {
         if (Backbone.history) {

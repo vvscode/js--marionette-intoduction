@@ -1,6 +1,5 @@
-define(['app'], function(ContactManager){
-    ContactManager.module('AboutApp', function(AboutApp, ContactManager, Backbone, Marionette, $, _){
-        AboutApp.Router = Marionette.AppRouter.extend({
+define(['app', 'marionette'], function(ContactManager, Marionette){
+        var Router = Marionette.AppRouter.extend({
             appRoutes: {
                 'about': 'showAbout'
             }
@@ -9,6 +8,7 @@ define(['app'], function(ContactManager){
         var API = {
             showAbout: function(){
                 require(['apps/about/show/show_controller'], function(ShowController){
+                    ContactManager.startSubApp(null);
                     ShowController.showAbout();
                     ContactManager.execute('set:active:header','about');
                 });
@@ -21,12 +21,11 @@ define(['app'], function(ContactManager){
         });
 
         ContactManager.addInitializer(function(){
-            new AboutApp.Router({
+            new Router({
                 controller: API
             })
         });
-    });
 
-    return ContactManager.AboutApp;
+    return Router;
 });
 

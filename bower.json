@@ -24,6 +24,7 @@
     "backbone.picky": "~0.2.0",
     "requirejs": "~2.1.14",
     "requirejs-underscore-tpl": "*",
-    "requirejs-text": "~2.0.12"
+    "requirejs-text": "~2.0.12",
+    "r.js": "~2.1.14"
   }
 }
